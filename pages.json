@@ -59,7 +59,7 @@
 	      "text": "商品管理",
 	      "iconPath": "static/image/shopping.png",
 	      "selectedIconPath": "static/image/shopping-fill.png"
-	    },
+	    }
 			]
 	  }
 }
