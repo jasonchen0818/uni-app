@@ -10,17 +10,23 @@
 			<uni-popup-message :type="msgType" :message="messageText" :duration="2000" style="text-align: center;"></uni-popup-message>
 		</uni-popup>
 	</view>
-	
-	<div style="width: 90%; margin: 0 auto;">
+	<div style="text-align: center;">
+		<image style="width: 200px; height: 200px; margin: 20px auto;" src="../../static/image/head.png" mode="aspectFit" ></image>
+	</div>
+	<div style="width: 70%; margin: 0 auto;">
 		<uni-forms ref="loginForm" :modelValue="loginFormData">
-			<uni-forms-item label="账号">
-				<uni-easyinput v-model="loginFormData.account" placeholder="请输入账号" />
-			</uni-forms-item>
-			<uni-forms-item label="密码">
-				<uni-easyinput type="password" v-model="loginFormData.password" placeholder="请输入密码" />
+			<uni-forms-item>
+				<uni-easyinput v-model="loginFormData.account" prefixIcon="person" placeholder="请输入账号" />
 			</uni-forms-item>
 			<uni-forms-item>
-				<button @click="login">登录</button>
+				<uni-easyinput type="password" v-model="loginFormData.password" prefixIcon="locked" placeholder="请输入密码" />
+			</uni-forms-item>
+			<uni-forms-item>
+				<button style="background-color: #18bc37; color:#fff; width: 40%;" @click="login">登录</button>
+			</uni-forms-item>
+			<uni-forms-item>
+				<view style="float: left; color: #2979ff;" @click="sign_up">立即注册</view>
+				    <view style="float: right; color: #2979ff;">忘记密码</view>
 			</uni-forms-item>
 		</uni-forms>
 	</div>
@@ -46,7 +52,6 @@
 			//要自己读后端返回的code是不是200，底下的succes只是http的code是200而已
 			//this.$baseUrl是全局变量，方便联调的时候换真的接口用的，定义在main.js中
 			login() {
-				console.log(this.loginFormData);
 				uni.request({
 					url: this.$baseUrl + "/users/login",
 					method: "POST",
@@ -74,6 +79,11 @@
 						this.messageText = err
 						this.$refs.message.open();
 					},
+				});
+			},
+			sign_up() {
+				uni.navigateTo({
+					url: '/pages/sign_up/sign_up'
 				});
 			}
 		}

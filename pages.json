@@ -28,6 +28,12 @@
 			"style": {
 				"navigationBarTitleText": "商品管理"
 			}
+		},
+		{
+			"path": "pages/sign_up/sign_up",
+			"style": {
+				"navigationBarTitleText": "用户注册"
+			}
 		}
 	],
 	"globalStyle": {
@@ -59,7 +65,7 @@
 	      "text": "商品管理",
 	      "iconPath": "static/image/shopping.png",
 	      "selectedIconPath": "static/image/shopping-fill.png"
-	    },
+	    }
 			]
 	  }
 }

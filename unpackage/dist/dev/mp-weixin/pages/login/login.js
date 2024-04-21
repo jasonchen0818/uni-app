@@ -15,7 +15,6 @@ const _sfc_main = {
     //要自己读后端返回的code是不是200，底下的succes只是http的code是200而已
     //this.$baseUrl是全局变量，方便联调的时候换真的接口用的，定义在main.js中
     login() {
-      console.log(this.loginFormData);
       common_vendor.index.request({
         url: this.$baseUrl + "/users/login",
         method: "POST",
@@ -39,6 +38,11 @@ const _sfc_main = {
           this.messageText = err;
           this.$refs.message.open();
         }
+      });
+    },
+    sign_up() {
+      common_vendor.index.navigateTo({
+        url: "/pages/sign_up/sign_up"
       });
     }
   }
@@ -72,24 +76,21 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     d: common_vendor.o(($event) => $data.loginFormData.account = $event),
     e: common_vendor.p({
+      prefixIcon: "person",
       placeholder: "请输入账号",
       modelValue: $data.loginFormData.account
     }),
-    f: common_vendor.p({
-      label: "账号"
-    }),
-    g: common_vendor.o(($event) => $data.loginFormData.password = $event),
-    h: common_vendor.p({
+    f: common_vendor.o(($event) => $data.loginFormData.password = $event),
+    g: common_vendor.p({
       type: "password",
+      prefixIcon: "locked",
       placeholder: "请输入密码",
       modelValue: $data.loginFormData.password
     }),
-    i: common_vendor.p({
-      label: "密码"
-    }),
-    j: common_vendor.o((...args) => $options.login && $options.login(...args)),
-    k: common_vendor.sr("loginForm", "a7ffd516-2"),
-    l: common_vendor.p({
+    h: common_vendor.o((...args) => $options.login && $options.login(...args)),
+    i: common_vendor.o((...args) => $options.sign_up && $options.sign_up(...args)),
+    j: common_vendor.sr("loginForm", "a7ffd516-2"),
+    k: common_vendor.p({
       modelValue: $data.loginFormData
     })
   };
