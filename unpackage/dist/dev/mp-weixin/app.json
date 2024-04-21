@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/home/home",
+    "pages/guest/guest",
+    "pages/goods/goods"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "我是大卖家",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/guest/guest",
+        "text": "客户管理",
+        "iconPath": "static/image/customer-bussinessman.png",
+        "selectedIconPath": "static/image/customer-businessman-fill.png"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/image/home.png",
+        "selectedIconPath": "static/image/home-fill.png"
+      },
+      {
+        "pagePath": "pages/goods/goods",
+        "text": "商品管理",
+        "iconPath": "static/image/shopping.png",
+        "selectedIconPath": "static/image/shopping-fill.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

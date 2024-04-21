@@ -1,0 +1,84 @@
+//总体都是vue3的语法，虽然目前本地pinia仓库还没有完善，但是这个文件包含了你写其他文件要的代码
+//类似饿了么，输入u会自己弹出来响应的组件，具体有哪些参照：https://uniapp.dcloud.net.cn/component/
+//项目中已经全局导入了uni-UI，无需再显示导入，也就这个东西包含样式了……
+//想找什么图标啥的，类似饿了么，在这上面找https://uniapp.dcloud.net.cn/component/uniui/uni-icons.html
+//找的时候记得用vue3的代码，不要用vue2的！单页面可能没事，多组件容易报错
+<template>
+	<view>
+		<!-- 提示信息弹窗 -->
+		<uni-popup ref="message" type="message">
+			<uni-popup-message :type="msgType" :message="messageText" :duration="2000" style="text-align: center;"></uni-popup-message>
+		</uni-popup>
+	</view>
+	
+	<div style="width: 90%; margin: 0 auto;">
+		<uni-forms ref="loginForm" :modelValue="loginFormData">
+			<uni-forms-item label="账号">
+				<uni-easyinput v-model="loginFormData.account" placeholder="请输入账号" />
+			</uni-forms-item>
+			<uni-forms-item label="密码">
+				<uni-easyinput type="password" v-model="loginFormData.password" placeholder="请输入密码" />
+			</uni-forms-item>
+			<uni-forms-item>
+				<button @click="login">登录</button>
+			</uni-forms-item>
+		</uni-forms>
+	</div>
+	
+</template>
+
+//登录界面的发送接口的示例，别问我为什么不写setup，问就是写了报错
+//好消息是数据不写reactive，用v-model绑定就行
+//坏消息是官方文档推荐使用ref，之后报错记得看有没有加.value
+<script>
+	export default {
+		data() {
+			//可以在这里定义静态变量
+			return {
+				loginFormData: {}, //使用了v-model有自动填充，为数不多的好处
+				msgType: 'success',
+				messageText: '这是一条成功提示',
+			}
+		},
+		methods: {
+			//下面是函数和接口的使用，函数你在template用什么名字这里些什么就行，const加不加都行
+			//发送请求的标准格式在下面，因为没有二次封装，所以耦合很高
+			//要自己读后端返回的code是不是200，底下的succes只是http的code是200而已
+			//this.$baseUrl是全局变量，方便联调的时候换真的接口用的，定义在main.js中
+			login() {
+				console.log(this.loginFormData);
+				uni.request({
+					url: this.$baseUrl + "/users/login",
+					method: "POST",
+					data: this.loginFormData,
+					success: (res) => {
+						// console.log(res);
+						if (res.data.code == 200) {
+							//下面三行分别是弹窗的类型、弹窗的内容、以及打开弹窗（2秒自己关）
+							this.msgType = "success"
+							this.messageText = res.data.message
+							this.$refs.message.open();
+							//官方不用vue自己的路由？？？所以跳转不是名字，用的是前端本地的组件位置
+							//这里跳转的函数很多可以上文档看一下，这个Switchtab跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。
+							uni.switchTab({
+								url: '/pages/home/home'
+							});
+						} else {
+							this.msgType = "error"
+							this.messageText = res.data.message
+							this.$refs.message.open();
+						}
+					},
+					fail: (err) => {
+						this.msgType = "error"
+						this.messageText = err
+						this.$refs.message.open();
+					},
+				});
+			}
+		}
+	}
+</script>
+
+<style>
+</style>

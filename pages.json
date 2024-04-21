@@ -1,0 +1,65 @@
+{
+	"pages": [{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "用户登录"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/guest/guest",
+			"style": {
+				"navigationBarTitleText": "客户管理"
+			}
+		},
+		{
+			"path": "pages/goods/goods",
+			"style": {
+				"navigationBarTitleText": "商品管理"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "我是大卖家",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	//顺序会影响底下导航栏的顺序，也要先在上面的pages先装载
+	//不知道能不能导svg，这点没有饿了么好用，还要自己设置两个静态资源
+	//如果不用矢量图真怕后期项目很卡
+	//附阿里巴巴官方素材库：https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.17223a81PGFDO5&cid=19238
+	"tabBar": {
+	    "list": [{
+	      "pagePath": "pages/guest/guest",
+	      "text": "客户管理",
+				"iconPath": "static/image/customer-bussinessman.png",
+				"selectedIconPath": "static/image/customer-businessman-fill.png"
+	    },{
+	      "pagePath": "pages/home/home",
+	      "text": "首页",
+	      "iconPath": "static/image/home.png",
+	      "selectedIconPath": "static/image/home-fill.png"
+	    },{
+	      "pagePath": "pages/goods/goods",
+	      "text": "商品管理",
+	      "iconPath": "static/image/shopping.png",
+	      "selectedIconPath": "static/image/shopping-fill.png"
+	    },
+			]
+	  }
+}
