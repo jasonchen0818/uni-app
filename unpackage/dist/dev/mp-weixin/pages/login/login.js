@@ -14,6 +14,8 @@ const _sfc_main = {
     //发送请求的标准格式在下面，因为没有二次封装，所以耦合很高
     //要自己读后端返回的code是不是200，底下的succes只是http的code是200而已
     //this.$baseUrl是全局变量，方便联调的时候换真的接口用的，定义在main.js中
+    //底下登录展示了没有header时登录的情况，不使用二次封装，二次封装的用法更简单，
+    //可在setting中看我直接写好的request函数
     login() {
       common_vendor.index.request({
         url: this.$baseUrl + "/users/login",
@@ -21,6 +23,12 @@ const _sfc_main = {
         data: this.loginFormData,
         success: (res) => {
           if (res.data.code == 200) {
+            console.log(res.data.data);
+            try {
+              common_vendor.index.setStorageSync("token", res.data.data.token);
+            } catch (err) {
+              console.log(err);
+            }
             this.msgType = "success";
             this.messageText = res.data.message;
             this.$refs.message.open();
@@ -88,11 +96,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       modelValue: $data.loginFormData.password
     }),
     h: common_vendor.o((...args) => $options.login && $options.login(...args)),
-    i: common_vendor.o((...args) => $options.sign_up && $options.sign_up(...args)),
-    j: common_vendor.sr("loginForm", "a7ffd516-2"),
-    k: common_vendor.p({
-      modelValue: $data.loginFormData
-    })
+    i: common_vendor.o((...args) => $options.sign_up && $options.sign_up(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/Jason/Documents/大三下/软工实训/uni-app/pages/login/login.vue"]]);

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
+const utils_request = require("./utils/request.js");
 if (!Math) {
   "./pages/login/login.js";
   "./pages/index/index.js";
@@ -27,6 +28,7 @@ const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "C:
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   app.config.globalProperties.$baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default";
+  app.config.globalProperties.$request = utils_request.request;
   return {
     app
   };

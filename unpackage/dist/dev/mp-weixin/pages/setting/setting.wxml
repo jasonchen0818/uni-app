@@ -1,1 +1,1 @@
-<view style="background-color:#fff;width:100%;height:100vh"><image src="{{a}}" style="width:200px;height:200px;border-radius:50%" mode="aspectFit"></image></view>
+<view style="text-align:center"><image src="{{a}}" style="width:200px;height:200px;border-radius:50%;margin:20 auto" mode="aspectFit"></image></view><view style="width:70%;margin:0 auto"><view style="background-color:#fff"><view style="float:left">用户名</view><view style="float:right">{{b}}</view></view></view>
