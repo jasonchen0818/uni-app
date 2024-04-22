@@ -34,6 +34,18 @@
 			"style": {
 				"navigationBarTitleText": "用户注册"
 			}
+		},
+		{
+			"path": "pages/order/order",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
 		}
 	],
 	"globalStyle": {
@@ -50,22 +62,31 @@
 	//如果不用矢量图真怕后期项目很卡
 	//附阿里巴巴官方素材库：https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.17223a81PGFDO5&cid=19238
 	"tabBar": {
-	    "list": [{
+	    "list": [
+				{
+				  "pagePath": "pages/goods/goods",
+				  "text": "商品",
+				  "iconPath": "static/image/shopping.png",
+				  "selectedIconPath": "static/image/shopping-fill.png"
+				},
+				{
 	      "pagePath": "pages/guest/guest",
-	      "text": "客户管理",
+	      "text": "客户",
 				"iconPath": "static/image/customer-bussinessman.png",
 				"selectedIconPath": "static/image/customer-businessman-fill.png"
-	    },{
-	      "pagePath": "pages/home/home",
-	      "text": "首页",
-	      "iconPath": "static/image/home.png",
-	      "selectedIconPath": "static/image/home-fill.png"
-	    },{
-	      "pagePath": "pages/goods/goods",
-	      "text": "商品管理",
-	      "iconPath": "static/image/shopping.png",
-	      "selectedIconPath": "static/image/shopping-fill.png"
-	    }
+	    },
+			{
+			  "pagePath": "pages/order/order",
+			  "text": "订单",
+				"iconPath": "static/image/catalog.png",
+				"selectedIconPath": "static/image/catalog-fill.png"
+			},
+			{
+			  "pagePath": "pages/setting/setting",
+			  "text": "我的",
+				"iconPath": "static/image/settings.png",
+				"selectedIconPath": "static/image/settings-fill.png"
+			}
 			]
 	  }
 }

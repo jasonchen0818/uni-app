@@ -25,7 +25,7 @@ const _sfc_main = {
             this.messageText = res.data.message;
             this.$refs.message.open();
             common_vendor.index.switchTab({
-              url: "/pages/home/home"
+              url: "/pages/goods/goods"
             });
           } else {
             this.msgType = "error";

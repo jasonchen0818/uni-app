@@ -66,7 +66,7 @@
 							//官方不用vue自己的路由？？？所以跳转不是名字，用的是前端本地的组件位置
 							//这里跳转的函数很多可以上文档看一下，这个Switchtab跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。
 							uni.switchTab({
-								url: '/pages/home/home'
+								url: '/pages/goods/goods'
 							});
 						} else {
 							this.msgType = "error"
