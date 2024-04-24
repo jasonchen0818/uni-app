@@ -16,6 +16,8 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
+    "color": "#8f939c",
+    "selectedColor": "#2979ff",
     "list": [
       {
         "pagePath": "pages/goods/goods",

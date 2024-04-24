@@ -1,4 +1,9 @@
 <template>
+	<view>
+		<uni-popup ref="message" type="message">
+			<uni-popup-message :type="msgType" :message="messageText" :duration="2000" style="text-align: center;"></uni-popup-message>
+		</uni-popup>
+	</view>
 	<div style="background-color: #fff; width: 100%; height: 100vh;">
 		<view>
 			<uni-section>
@@ -15,6 +20,10 @@
 				<uni-section title="密码" type="line" />
 				<uni-forms-item>
 					<uni-easyinput type="password" v-model="signUpFormData.password" prefixIcon="locked" placeholder="请输入密码" />
+				</uni-forms-item>
+				<uni-section title="确认密码" type="line" />
+				<uni-forms-item>
+					<uni-easyinput type="password" v-model="signUpFormData.checkPassword" prefixIcon="locked" placeholder="确认密码" />
 				</uni-forms-item>
 				<uni-forms-item>
 					<view style="float: right;">
@@ -33,11 +42,11 @@
 				</uni-forms-item>
 				<uni-section title="性别" type="line" />
 				<uni-forms-item>
-					<uni-easyinput type="password" v-model="signUpFormData.gender" prefixIcon="locked" placeholder="性别" />
+					<uni-easyinput v-model="signUpFormData.gender" prefixIcon="person" placeholder="性别" />
 				</uni-forms-item>
 				<uni-section title="电话号码" type="line" />
 				<uni-forms-item>
-					<uni-easyinput type="password" v-model="signUpFormData.phone" prefixIcon="locked" placeholder="电话号码" />
+					<uni-easyinput v-model="signUpFormData.phone" prefixIcon="phone" placeholder="电话号码" />
 				</uni-forms-item>
 				<uni-forms-item>
 					<view style="float: left;">
@@ -71,7 +80,14 @@
 	export default {
 		data() {
 			return {
-				signUpFormData: {},
+				signUpFormData: {
+					account: '',
+					password: '',
+					checkPassword: '',
+					name: '',
+					gender: '',
+					phone: ''
+				},
 				active: 0,
 				list1: [{
 					title: '填写账号密码'
@@ -79,12 +95,23 @@
 					title: '填写身份信息'
 				}, {
 					title: '填写门店信息'
-				}]
+				}],
+				msgType: 'success',
+				messageText: '这是一条成功提示',
 			}
 		},
 		methods: {
 			next() {
-				this.active = this.active + 1;
+				if(this.signUpFormData.password != this.signUpFormData.checkPassword){
+					this.msgType = "error"
+					this.messageText = "两次密码输入不一致！"
+					this.signUpFormData.password = '';
+					this.signUpFormData.checkPassword = '';
+					this.$refs.message.open();
+				}else{
+					this.active = this.active + 1;
+				}
+				
 			},
 			back() {
 				this.active = this.active - 1;

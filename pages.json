@@ -1,5 +1,6 @@
 {
-	"pages": [{
+	"pages": [
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "用户登录"
@@ -62,6 +63,10 @@
 	//如果不用矢量图真怕后期项目很卡
 	//附阿里巴巴官方素材库：https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.17223a81PGFDO5&cid=19238
 	"tabBar": {
+		"color": "#8f939c",
+		"selectedColor": "#2979ff",
+		"fontSize": "50px",
+		"height": "50px",
 	    "list": [
 				{
 				  "pagePath": "pages/goods/goods",

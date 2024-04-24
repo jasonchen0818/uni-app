@@ -5,7 +5,7 @@ const _sfc_main = {
     return {
       avatar: common_vendor.index.getStorageSync("avatar"),
       infoFormData: {
-        name: "",
+        userName: "",
         account: "",
         storeName: "",
         roleId: null,
@@ -42,11 +42,120 @@ const _sfc_main = {
     this.getInfo();
   }
 };
+if (!Array) {
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
+  const _easycom_uni_col2 = common_vendor.resolveComponent("uni-col");
+  const _easycom_uni_row2 = common_vendor.resolveComponent("uni-row");
+  (_easycom_uni_icons2 + _easycom_uni_col2 + _easycom_uni_row2)();
+}
+const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+const _easycom_uni_col = () => "../../uni_modules/uni-row/components/uni-col/uni-col.js";
+const _easycom_uni_row = () => "../../uni_modules/uni-row/components/uni-row/uni-row.js";
+if (!Math) {
+  (_easycom_uni_icons + _easycom_uni_col + _easycom_uni_row)();
+}
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
+  return common_vendor.e({
     a: $data.avatar,
-    b: common_vendor.t($data.infoFormData.account)
-  };
+    b: common_vendor.t($data.infoFormData.userName),
+    c: common_vendor.p({
+      type: "person",
+      size: "20",
+      color: "#c7c9ce"
+    }),
+    d: common_vendor.p({
+      span: 12
+    }),
+    e: $data.infoFormData.roleId == 1
+  }, $data.infoFormData.roleId == 1 ? {} : $data.infoFormData.roleId == 2 ? {} : $data.infoFormData.roleId == 3 ? {} : $data.infoFormData.roleId == 4 ? {} : {}, {
+    f: $data.infoFormData.roleId == 2,
+    g: $data.infoFormData.roleId == 3,
+    h: $data.infoFormData.roleId == 4,
+    i: common_vendor.p({
+      type: "medal",
+      size: "20",
+      color: "#c7c9ce"
+    }),
+    j: common_vendor.p({
+      span: 12
+    }),
+    k: common_vendor.p({
+      type: "email",
+      size: "20",
+      color: "#f3a73f"
+    }),
+    l: common_vendor.t($data.infoFormData.account),
+    m: common_vendor.p({
+      type: "right",
+      size: "22",
+      color: "#969696"
+    }),
+    n: common_vendor.p({
+      type: "phone",
+      size: "20",
+      color: "#18bc37"
+    }),
+    o: common_vendor.t($data.infoFormData.phoneNumber),
+    p: common_vendor.p({
+      type: "right",
+      size: "22",
+      color: "#969696"
+    }),
+    q: common_vendor.p({
+      type: "shop",
+      size: "20",
+      color: "#e43d33"
+    }),
+    r: common_vendor.t($data.infoFormData.storeName),
+    s: common_vendor.p({
+      type: "right",
+      size: "22",
+      color: "#969696"
+    }),
+    t: common_vendor.p({
+      type: "info",
+      size: "20",
+      color: "#94bcff"
+    }),
+    v: $data.infoFormData.status == 0
+  }, $data.infoFormData.status == 0 ? {} : $data.infoFormData.status == 1 ? {} : {}, {
+    w: $data.infoFormData.status == 1,
+    x: common_vendor.p({
+      type: "right",
+      size: "22",
+      color: "#969696"
+    }),
+    y: common_vendor.p({
+      type: "scan",
+      size: "20",
+      color: "#f3a73f"
+    }),
+    z: common_vendor.p({
+      type: "right",
+      size: "22",
+      color: "#969696"
+    }),
+    A: common_vendor.p({
+      type: "gear",
+      size: "20",
+      color: "#94bcff"
+    }),
+    B: common_vendor.p({
+      type: "right",
+      size: "22",
+      color: "#969696"
+    }),
+    C: common_vendor.p({
+      type: "locked",
+      size: "20",
+      color: "#e43d33"
+    }),
+    D: common_vendor.p({
+      type: "right",
+      size: "22",
+      color: "#969696"
+    })
+  });
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/Jason/Documents/大三下/软工实训/uni-app/pages/setting/setting.vue"]]);
 wx.createPage(MiniProgramPage);

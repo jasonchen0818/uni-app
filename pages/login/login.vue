@@ -45,7 +45,10 @@
 		data() {
 			//可以在这里定义静态变量
 			return {
-				loginFormData: {}, //使用了v-model有自动填充，为数不多的好处
+				loginFormData: {
+					account: 'admin',
+					password: 'admin'
+				}, //使用了v-model有自动填充，为数不多的好处
 				msgType: 'success',
 				messageText: '这是一条成功提示',
 			}
