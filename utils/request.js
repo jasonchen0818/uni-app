@@ -3,7 +3,7 @@ const baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default"
 //为了之后发送请求方便，不用每次传写header和解构，我又写了二次封装……
 //之后要和后端协商这个header写什么,目前就是传token
 const header = {
-	Authorization: uni.getStorageSync('token')
+	Authorization: "Bearer " + uni.getStorageSync('token')
 }
 
 //二次封装的核心函数，参数分别是接口路径，数据（对象，可以为空），方法不写就是GET

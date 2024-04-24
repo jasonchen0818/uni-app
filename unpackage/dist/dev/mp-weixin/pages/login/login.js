@@ -3,7 +3,10 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   data() {
     return {
-      loginFormData: {},
+      loginFormData: {
+        account: "admin",
+        password: "admin"
+      },
       //使用了v-model有自动填充，为数不多的好处
       msgType: "success",
       messageText: "这是一条成功提示"

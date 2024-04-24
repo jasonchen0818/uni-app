@@ -2,7 +2,7 @@
 const common_vendor = require("../common/vendor.js");
 const baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default";
 const header = {
-  Authorization: common_vendor.index.getStorageSync("token")
+  Authorization: "Bearer " + common_vendor.index.getStorageSync("token")
 };
 const request = (url = "", data = {}, method = "GET") => {
   return new Promise((resolve, reject) => {
