@@ -4,15 +4,24 @@
 			<uni-icons slot="searchIcon" color="#999999" size="18" type="home" />
 		</uni-search-bar>
 	</view>
-	<my-list-item imgUrl="./../static/image/customer-add-fill.png" title="新增客户"></my-list-item>
-	<my-list-item imgUrl="./../static/image/discount-fill.png" title="标签"></my-list-item>
-	<!-- 下面是正在实现的索引列表 -->
-	<view v-for="(item,index) in list" :key="index">
-		<view>
-			<!-- 判断该字母有没有孩子，没有就不显示了 -->
-			<text v-if="item.data.length">{{item.letter}}</text>
+	<scroll-view scroll-y="true">
+		<my-list-item imgUrl="./../static/image/customer-add-fill.png" title="新增客户"></my-list-item>
+		<my-list-item imgUrl="./../static/image/discount-fill.png" title="标签"></my-list-item>
+		<!-- 下面是正在实现的索引列表 -->
+		<view v-for="(item,index) in list" :key="index">
+			<view>
+				<!-- 判断该字母有没有孩子，没有就不显示了 -->
+				<text v-if="item.data.length" style="margin-left: 10px;">{{item.letter}}</text>
+			</view>
+			<my-list-item v-for="(item2,index2) in item.data" :key="index2" :imgUrl="item2.imgUrl"
+				:title="item2.title"></my-list-item>
 		</view>
-		<my-list-item v-for="(item2,index2) in item.data" :key="index2" imgUrl="./../static/image/customer-add-fill.png" :title="item2.title"></my-list-item>
+	</scroll-view>
+	<!-- 侧边栏 -->
+	<view style="position: fixed; right: 5px; bottom: 0; display: flex; flex-direction: column; align-items: center; height: 100%;">
+		<view v-for="(item,index) in list" :key="index" style="display: flex; flex: 1; align-items: center; justify-content: center;">
+			<text style="font-size: 18px; text-align: center; color: #aaa;">{{item.letter}}</text>
+		</view>
 	</view>
 </template>
 
@@ -27,54 +36,19 @@
 		},
 		data() {
 			return {
-				list: [
-					{
-						letter: 'A',
-						data: [
-							{
-								imgUrl: '',
-								title: '阿巴阿巴'
-							},
-							{
-								imgUrl: '',
-								title: '阿克苏'
-							},
-							{
-								imgUrl: '',
-								title: '阿里巴巴'
-							},
-							{
-								imgUrl: '',
-								title: '啊我的眼睛'
-							}
-						]
-					},
-					{
-						letter: 'B',
-						data: [
-							{
-								imgUrl: '',
-								title: '八嘎'
-							},
-							{
-								imgUrl: '',
-								title: '霸道的力量'
-							},
-							{
-								imgUrl: '',
-								title: '北京彭于晏'
-							},
-							{
-								imgUrl: '',
-								title: '保山汉尼拔'
-							}
-						]
-					}
-				]
+				list: {}
 			}
 		},
 		methods: {
-
+			getList() {
+				this.$request('/guest/getList', null, 'GET').then(res => {
+					console.log("获取客户列表成功！", res);
+					this.list = res;
+				})
+			}
+		},
+		mounted() {
+			this.getList();
 		}
 	}
 </script>

@@ -7,53 +7,20 @@ const _sfc_main = {
   },
   data() {
     return {
-      list: [
-        {
-          letter: "A",
-          data: [
-            {
-              imgUrl: "",
-              title: "阿巴阿巴"
-            },
-            {
-              imgUrl: "",
-              title: "阿克苏"
-            },
-            {
-              imgUrl: "",
-              title: "阿里巴巴"
-            },
-            {
-              imgUrl: "",
-              title: "啊我的眼睛"
-            }
-          ]
-        },
-        {
-          letter: "B",
-          data: [
-            {
-              imgUrl: "",
-              title: "八嘎"
-            },
-            {
-              imgUrl: "",
-              title: "霸道的力量"
-            },
-            {
-              imgUrl: "",
-              title: "北京彭于晏"
-            },
-            {
-              imgUrl: "",
-              title: "保山汉尼拔"
-            }
-          ]
-        }
-      ]
+      list: {}
     };
   },
-  methods: {}
+  methods: {
+    getList() {
+      this.$request("/guest/getList", null, "GET").then((res) => {
+        console.log("获取客户列表成功！", res);
+        this.list = res;
+      });
+    }
+  },
+  mounted() {
+    this.getList();
+  }
 };
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
@@ -98,13 +65,19 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
             a: index2,
             b: "54b9c413-4-" + i0 + "-" + i1,
             c: common_vendor.p({
-              imgUrl: "./../static/image/customer-add-fill.png",
+              imgUrl: item2.imgUrl,
               title: item2.title
             })
           };
         }),
         d: index
       });
+    }),
+    h: common_vendor.f($data.list, (item, index, i0) => {
+      return {
+        a: common_vendor.t(item.letter),
+        b: index
+      };
     })
   };
 }
