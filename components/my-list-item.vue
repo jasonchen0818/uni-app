@@ -1,5 +1,5 @@
 <template>
-	<view class="item-container" hover-class="bg-light">
+	<view class="item-container" hover-class="bg-light" @click="click">
 		<view class="image-container">
 			<image class="avatar" v-if="imgUrl" :src="imgUrl" mode="aspectFit">
 			</image>
@@ -20,6 +20,20 @@
 			title: {
 				type: String,
 				default: ''
+			},
+			phone: {
+				type: String,
+				default: ''
+			}
+		},
+		methods: {
+			click() {
+				//数据缓存到仓库，让另一个组件调用，之后会消除缓存
+				let data = {imgUrl: this.imgUrl, title: this.title, phone: this.phone};
+				uni.setStorageSync('guestName',data);
+				uni.navigateTo({
+					url: '/pages/guest/info'
+				});
 			}
 		}
 	}

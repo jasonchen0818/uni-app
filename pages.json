@@ -43,6 +43,12 @@
 			}
 		},
 		{
+			"path": "pages/guest/info",
+			"style": {
+				"navigationBarTitleText": "客户详情"
+			}
+		},
+		{
 			"path": "pages/setting/setting",
 			"style": {
 				"navigationBarTitleText": "我的"

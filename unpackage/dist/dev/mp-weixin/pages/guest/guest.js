@@ -7,15 +7,51 @@ const _sfc_main = {
   },
   data() {
     return {
+      top: 0,
+      //侧边栏顶部动态距离，算不好，摆了
+      scrollHeight: 0,
+      //可滑动距离
+      scrollinto: "",
+      current: "",
       list: {}
     };
+  },
+  onLoad() {
+    common_vendor.index.getSystemInfoAsync().then((info) => {
+      this.scrollHeight = info.windowHeight;
+      console.log("scrollHeight", this.scrollHeight);
+    });
+  },
+  computed: {
+    itemHeight() {
+      const count = this.list.length;
+      return this.scrollHeight / count;
+    }
   },
   methods: {
     getList() {
       this.$request("/guest/getList", null, "GET").then((res) => {
-        console.log("获取客户列表成功！", res);
         this.list = res;
+        common_vendor.index.setStorageSync("guestList", res);
       });
+    },
+    touchstart(e) {
+      this.changeScrollinto(e);
+    },
+    touchmove(e) {
+      this.changeScrollinto(e);
+    },
+    touchend() {
+      this.current = null;
+    },
+    changeScrollinto(e) {
+      const Y = e.touches[0].pageY;
+      const index = Math.floor(Y / this.itemHeight);
+      const item = this.list[index];
+      if (item) {
+        this.scrollinto = `item-` + item.letter;
+        this.current = item.letter;
+      }
     }
   },
   mounted() {
@@ -23,38 +59,14 @@ const _sfc_main = {
   }
 };
 if (!Array) {
-  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  const _easycom_uni_search_bar2 = common_vendor.resolveComponent("uni-search-bar");
   const _component_my_list_item = common_vendor.resolveComponent("my-list-item");
-  (_easycom_uni_icons2 + _easycom_uni_search_bar2 + _component_my_list_item)();
-}
-const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
-const _easycom_uni_search_bar = () => "../../uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.js";
-if (!Math) {
-  (_easycom_uni_icons + _easycom_uni_search_bar)();
+  _component_my_list_item();
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
-    a: common_vendor.p({
-      color: "#999999",
-      size: "18",
-      type: "home"
-    }),
-    b: common_vendor.o(_ctx.search),
-    c: common_vendor.o(_ctx.cancel),
-    d: common_vendor.p({
-      placeholder: "搜索客户姓名/电话",
-      ["cancel-text"]: "取消"
-    }),
-    e: common_vendor.p({
-      imgUrl: "./../static/image/customer-add-fill.png",
-      title: "新增客户"
-    }),
-    f: common_vendor.p({
-      imgUrl: "./../static/image/discount-fill.png",
-      title: "标签"
-    }),
-    g: common_vendor.f($data.list, (item, index, i0) => {
+  return common_vendor.e({
+    a: common_vendor.o((...args) => _ctx.click && _ctx.click(...args)),
+    b: common_vendor.o((...args) => _ctx.click && _ctx.click(...args)),
+    c: common_vendor.f($data.list, (item, index, i0) => {
       return common_vendor.e({
         a: item.data.length
       }, item.data.length ? {
@@ -63,23 +75,34 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         c: common_vendor.f(item.data, (item2, index2, i1) => {
           return {
             a: index2,
-            b: "54b9c413-4-" + i0 + "-" + i1,
+            b: "54b9c413-0-" + i0 + "-" + i1,
             c: common_vendor.p({
               imgUrl: item2.imgUrl,
-              title: item2.title
+              title: item2.title,
+              phone: item2.phone
             })
           };
         }),
-        d: index
+        d: index,
+        e: `item-` + item.letter
       });
     }),
-    h: common_vendor.f($data.list, (item, index, i0) => {
+    d: common_vendor.s(`height:${$data.scrollHeight}px`),
+    e: $data.scrollinto,
+    f: common_vendor.f($data.list, (item, index, i0) => {
       return {
         a: common_vendor.t(item.letter),
         b: index
       };
-    })
-  };
+    }),
+    g: common_vendor.s(`top:${$data.top}px`),
+    h: common_vendor.o((...args) => $options.touchstart && $options.touchstart(...args)),
+    i: common_vendor.o((...args) => $options.touchmove && $options.touchmove(...args)),
+    j: common_vendor.o((...args) => $options.touchend && $options.touchend(...args)),
+    k: $data.current
+  }, $data.current ? {
+    l: common_vendor.t($data.current)
+  } : {});
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/Jason/Documents/大三下/软工实训/uni-app/pages/guest/guest.vue"]]);
 wx.createPage(MiniProgramPage);
