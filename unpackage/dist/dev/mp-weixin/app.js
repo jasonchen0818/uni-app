@@ -25,7 +25,7 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
-const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "C:/Users/Jason/Documents/大三下/软工实训/uni-app/App.vue"]]);
+const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "/Users/huanglinna/IdeaProjects/AIbeatuify/uni-app/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   app.config.globalProperties.$baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default";

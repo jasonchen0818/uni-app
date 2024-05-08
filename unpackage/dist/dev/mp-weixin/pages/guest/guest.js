@@ -75,7 +75,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         c: common_vendor.f(item.data, (item2, index2, i1) => {
           return {
             a: index2,
-            b: "54b9c413-0-" + i0 + "-" + i1,
+            b: "52e07642-0-" + i0 + "-" + i1,
             c: common_vendor.p({
               imgUrl: item2.imgUrl,
               title: item2.title,
@@ -104,5 +104,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     l: common_vendor.t($data.current)
   } : {});
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/Jason/Documents/大三下/软工实训/uni-app/pages/guest/guest.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/huanglinna/IdeaProjects/AIbeatuify/uni-app/pages/guest/guest.vue"]]);
 wx.createPage(MiniProgramPage);

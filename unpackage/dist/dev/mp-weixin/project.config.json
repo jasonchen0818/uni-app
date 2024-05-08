@@ -18,12 +18,29 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.4.2",
+  "libVersion": "3.3.5",
   "appid": "wxd032b450c51c7c00",
   "projectname": "uni-app",
-  "condition": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": []
+    }
+  },
   "editorSetting": {
-    "tabIndent": "auto",
+    "tabIndent": "insertSpaces",
     "tabSize": 2
   }
 }

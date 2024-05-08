@@ -67,7 +67,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       message: $data.messageText,
       duration: 2e3
     }),
-    b: common_vendor.sr("message", "8feeb846-0"),
+    b: common_vendor.sr("message", "6a195ea9-0"),
     c: common_vendor.p({
       type: "message"
     }),
@@ -110,7 +110,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       modelValue: $data.signUpFormData.checkPassword
     }),
     o: common_vendor.o((...args) => $options.next && $options.next(...args)),
-    p: common_vendor.sr("signUpForm", "8feeb846-4"),
+    p: common_vendor.sr("signUpForm", "6a195ea9-4"),
     q: common_vendor.p({
       modelValue: $data.signUpFormData
     })
@@ -149,7 +149,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     C: common_vendor.o((...args) => $options.back && $options.back(...args)),
     D: common_vendor.o((...args) => $options.next && $options.next(...args)),
-    E: common_vendor.sr("signUpForm", "8feeb846-15"),
+    E: common_vendor.sr("signUpForm", "6a195ea9-15"),
     F: common_vendor.p({
       modelValue: $data.signUpFormData
     })
@@ -157,11 +157,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     G: $data.active == 2
   }, $data.active == 2 ? {
     H: common_vendor.o((...args) => $options.back && $options.back(...args)),
-    I: common_vendor.sr("signUpForm", "8feeb846-26"),
+    I: common_vendor.sr("signUpForm", "6a195ea9-26"),
     J: common_vendor.p({
       modelValue: $data.signUpFormData
     })
   } : {});
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/Jason/Documents/大三下/软工实训/uni-app/pages/sign_up/sign_up.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/huanglinna/IdeaProjects/AIbeatuify/uni-app/pages/sign_up/sign_up.vue"]]);
 wx.createPage(MiniProgramPage);

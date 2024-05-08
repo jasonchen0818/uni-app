@@ -81,7 +81,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       message: $data.messageText,
       duration: 2e3
     }),
-    b: common_vendor.sr("message", "a7ffd516-0"),
+    b: common_vendor.sr("message", "2dd61641-0"),
     c: common_vendor.p({
       type: "message"
     }),
@@ -102,5 +102,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     i: common_vendor.o((...args) => $options.sign_up && $options.sign_up(...args))
   };
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/Jason/Documents/大三下/软工实训/uni-app/pages/login/login.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/huanglinna/IdeaProjects/AIbeatuify/uni-app/pages/login/login.vue"]]);
 wx.createPage(MiniProgramPage);
