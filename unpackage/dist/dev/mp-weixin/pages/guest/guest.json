@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "客户管理",
-  "usingComponents": {
-    "my-list-item": "../../components/my-list-item"
-  }
-}

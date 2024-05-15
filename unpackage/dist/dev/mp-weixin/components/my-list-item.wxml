@@ -1,1 +1,0 @@
-<view class="item-container" hover-class="bg-light" bindtap="{{d}}"><view class="image-container"><image wx:if="{{a}}" class="avatar" src="{{b}}" mode="aspectFit"></image></view><view class="label-container"><text>{{c}}</text></view></view>
