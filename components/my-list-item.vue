@@ -5,7 +5,7 @@
 			</image>
 		</view>
 		<view class="label-container">
-			<text>{{title}}</text>
+			<text>{{name}}</text>
 		</view>
 	</view>
 </template>
@@ -17,19 +17,31 @@
 				type: String,
 				default: ''
 			},
-			title: {
+			name: {
 				type: String,
 				default: ''
 			},
 			phone: {
 				type: String,
 				default: ''
+			},
+			sex: {
+				type: Number,
+				default: null
+			},
+			age: {
+				type: Number,
+				default: null
+			},
+			state: {
+				type: Number,
+				default: null
 			}
 		},
 		methods: {
 			click() {
 				//数据缓存到仓库，让另一个组件调用，之后会消除缓存
-				let data = {imgUrl: this.imgUrl, title: this.title, phone: this.phone};
+				let data = {imgUrl: this.imgUrl, name: this.name, phone: this.phone, sex: this.sex, age: this.age, state: this.state};
 				uni.setStorageSync('guestName',data);
 				uni.navigateTo({
 					url: '/pages/guest/info'

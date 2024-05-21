@@ -6,7 +6,7 @@
 		</uni-search-bar> -->
 		<!-- 搜索还是放在新页面好，不然逻辑很混乱，之后再加个按钮吧 -->
 		
-		<view class="item-container" hover-class="bg-light" @click="click">
+		<view class="item-container" hover-class="bg-light" @click="addGuest">
 			<view class="image-container">
 				<image class="avatar" src="./../static/image/customer-add-fill.png" mode="aspectFit">
 				</image>
@@ -15,7 +15,7 @@
 				<text>新增客户</text>
 			</view>
 		</view>
-		<view class="item-container" hover-class="bg-light" @click="click">
+		<view class="item-container" hover-class="bg-light" @click="tag">
 			<view class="image-container">
 				<image class="avatar" src="./../static/image/discount-fill.png" mode="aspectFit">
 				</image>
@@ -31,8 +31,8 @@
 					<!-- 判断该字母有没有孩子，没有就不显示了 -->
 					<text v-if="item.data.length" style="margin-left: 10px;">{{item.letter}}</text>
 				</view>
-				<my-list-item v-for="(item2,index2) in item.data" :key="index2" :imgUrl="item2.imgUrl" :title="item2.title"
-					:phone="item2.phone"></my-list-item>
+				<my-list-item v-for="(item2,index2) in item.data" :key="index2" :imgUrl="item2.imgUrl" :name="item2.name"
+					:phone="item2.phone" :sex="item2.sex" :age="item2.age" :state="item2.state"></my-list-item>
 			</view>
 		</scroll-view>
 
@@ -111,6 +111,16 @@
 					this.scrollinto = `item-` + item.letter;
 					this.current = item.letter;
 				}
+			},
+			addGuest(){
+				uni.navigateTo({
+					url: '/pages/guest/add_guest'
+				});
+			},
+			tag(){
+				uni.navigateTo({
+					url: '/pages/guest/tag'
+				});
 			}
 		},
 		mounted() {

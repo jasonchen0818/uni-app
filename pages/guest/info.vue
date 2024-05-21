@@ -21,6 +21,18 @@
 		</div>
 		<uni-icons type="right" size="22" color="#969696"></uni-icons>
 	</div>
+	<div class="option-container" @click="followUp">
+		<div class="option">
+			<text class="option-text">跟进</text>
+		</div>
+		<uni-icons type="right" size="22" color="#969696"></uni-icons>
+	</div>
+	<div class="option-container" @click="edit">
+		<div class="option">
+			<text class="option-text">编辑</text>
+		</div>
+		<uni-icons type="right" size="22" color="#969696"></uni-icons>
+	</div>
 </template>
 
 <script>
@@ -38,7 +50,17 @@
 			uni.removeStorageSync('guestName');
 		},
 		methods: {
-			
+			followUp() {
+				uni.navigateTo({
+					url: '/pages/guest/followUp'
+				});
+			},
+			edit() {
+				uni.setStorageSync('guestName',this.data);
+				uni.navigateTo({
+					url: '/pages/guest/edit'
+				});
+			}
 		}
 	}
 </script>
