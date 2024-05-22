@@ -80,6 +80,18 @@
 			}
 		},
 		{
+			"path" : "pages/guest/followUpHistory",
+			"style": {
+				"navigationBarTitleText" : "跟进记录"
+			}
+		},
+		{
+			"path" : "pages/guest/consumptionHistory",
+			"style": {
+				"navigationBarTitleText" : "消费记录"
+			}
+		},
+		{
 			"path" : "pages/guest/edit",
 			"style": {
 				"navigationBarTitleText" : "编辑客户"

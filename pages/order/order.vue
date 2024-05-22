@@ -2,7 +2,7 @@
 	<div class="container">
 		<!-- 搜索栏 -->
 		<div class="search-bar">
-			<uni-icons type="bars" size="30"></uni-icons>
+			<uni-icons type="bars" size="30" @click="showDrawer"></uni-icons>
 			<uni-search-bar placeholder="搜索订单" v-model="searchQuery" style="flex: 1;" bgColor="#ffffff" radius="20"
 				:focus="true" cancel-button="none"></uni-search-bar>
 		</div>
@@ -39,17 +39,43 @@
 			</list-item>
 		</list-view>
 	</div>
-	<uni-fab v-show="isShowTopBtn" :pattern="{icon: 'arrow-up'}" horizontal="right" :popMenu="false" @fabClick="topBack"></uni-fab>
+	<uni-fab v-show="isShowTopBtn" :pattern="{icon: 'arrow-up'}" horizontal="right" :popMenu="false"
+		@fabClick="topBack"></uni-fab>
+	<uni-drawer class="drawer" ref="showLeft" mode="left" :mask="true" :maskClick="true">
+		<div class="sortTitle">排序规则</div>
+		<radio-group @change="radioChange">
+			<view class="sortView">
+				时间:
+				<radio value="0dateTime">升序</radio>
+				<radio value="1dateTime" checked="true">降序</radio>
+			</view>
+			<view class="sortView">
+				金额:
+				<radio value="0totalPrice">升序</radio>
+				<radio value="1totalPrice">降序</radio>
+			</view>
+			<view class="sortView">
+				商品:
+				<radio value="0productName">升序</radio>
+				<radio value="1productName">降序</radio>
+			</view>
+			<view class="sortView">
+				客户:
+				<radio value="0customerName">升序</radio>
+				<radio value="1customerName">降序</radio>
+			</view>
+		</radio-group>
+	</uni-drawer>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				searchQuery: '',	// 搜索
-				statusQuery: '',	// 状态筛选
-				sortKey: '',		// 排序字段
-				isShowTopBtn: false,// 显示回到顶部按钮
+				searchQuery: '', // 搜索
+				statusQuery: '', // 状态筛选
+				sortKey: '1dateTime', // 排序字段，开头0表示升序，1表示降序
+				isShowTopBtn: false, // 显示回到顶部按钮
 				orders: [{
 						id: 1,
 						productName: "面膜",
@@ -90,8 +116,33 @@
 				}
 
 				// 排序
-				if (this.sortKey) {
-					orders.sort((a, b) => a[this.sortKey].localeCompare(b[this.sortKey]))
+				let str = this.sortKey;
+				if (str && str.charAt(0) === '0') {
+					str = str.slice(1);
+					if (str === 'totalPrice')
+						orders.sort((a, b) => {
+							if (a[str] < b[str])
+								return -1;
+							else if (a[str] < b[str])
+								return 1;
+							else
+								return 0;
+						})
+					else
+						orders.sort((a, b) => a[str].localeCompare(b[str]))
+				} else if (str && str.charAt(0) === '1') {
+					str = str.slice(1);
+					if (str === 'totalPrice')
+						orders.sort((a, b) => {
+							if (a[str] > b[str])
+								return -1;
+							else if (a[str] > b[str])
+								return 1;
+							else
+								return 0;
+						})
+					else
+						orders.sort((a, b) => b[str].localeCompare(a[str]))
 				}
 				return orders;
 			}
@@ -121,6 +172,15 @@
 					scrollTop: 0,
 					duration: 300
 				})
+			},
+			showDrawer() {
+				this.$refs.showLeft.open();
+			},
+			closeDrawer() {
+				this.$refs.showLeft.close();
+			},
+			radioChange(evt) {
+				this.sortKey = evt.detail.value;
 			}
 		},
 		onLoad: function() {
@@ -233,5 +293,16 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+
+	.sortTitle {
+		padding: 20px 10px;
+		font-size: 18px;
+	}
+
+	.sortView {
+		display: flex;
+		gap: 10px;
+		padding: 10px 10px;
 	}
 </style>
