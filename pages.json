@@ -56,16 +56,15 @@
 			}
 		},
 		{
-<<<<<<< HEAD
-			"path" : "pages/order/info",
+			"path": "pages/productDetail/productDetail",
 			"style": {
-				"navigationBarTitleText" : "订单详情"
-=======
-			"path" : "pages/productDetail/productDetail",
-			"style" : 
-			{
-				"navigationBarTitleText" : "商品详情"
->>>>>>> cc93fa6 (增加商品详情页)
+				"navigationBarTitleText": "商品详情"
+			}
+		},
+		{
+			"path": "pages/order/info",
+			"style": {
+				"navigationBarTitleText": "订单详情"
 			}
 		},
 		{
@@ -102,40 +101,36 @@
 			"background": "#efeff4"
 		}
 	},
-	//顺序会影响底下导航栏的顺序，也要先在上面的pages先装载
-	//不知道能不能导svg，这点没有饿了么好用，还要自己设置两个静态资源
-	//如果不用矢量图真怕后期项目很卡
-	//附阿里巴巴官方素材库：https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.17223a81PGFDO5&cid=19238
 	"tabBar": {
 		"color": "#8f939c",
 		"selectedColor": "#2979ff",
 		"fontSize": "50px",
 		"height": "50px",
-	    "list": [
-				{
-				  "pagePath": "pages/goods/goods",
-				  "text": "商品",
-				  "iconPath": "static/image/shopping.png",
-				  "selectedIconPath": "static/image/shopping-fill.png"
-				},
-				{
-	      "pagePath": "pages/guest/guest",
-	      "text": "客户",
+		"list": [
+			{
+				"pagePath": "pages/goods/goods",
+				"text": "商品",
+				"iconPath": "static/image/shopping.png",
+				"selectedIconPath": "static/image/shopping-fill.png"
+			},
+			{
+				"pagePath": "pages/guest/guest",
+				"text": "客户",
 				"iconPath": "static/image/customer-bussinessman.png",
 				"selectedIconPath": "static/image/customer-businessman-fill.png"
-	    },
+			},
 			{
-			  "pagePath": "pages/order/order",
-			  "text": "订单",
+				"pagePath": "pages/order/order",
+				"text": "订单",
 				"iconPath": "static/image/catalog.png",
 				"selectedIconPath": "static/image/catalog-fill.png"
 			},
 			{
-			  "pagePath": "pages/setting/setting",
-			  "text": "我的",
+				"pagePath": "pages/setting/setting",
+				"text": "我的",
 				"iconPath": "static/image/settings.png",
 				"selectedIconPath": "static/image/settings-fill.png"
 			}
-			]
-	  }
+		]
+	}
 }
