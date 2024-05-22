@@ -1,0 +1,161 @@
+
+  /* 样式保持不变 */
+.top{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10rpx 15rpx 10rpx 15rpx;
+}
+.function-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23%;
+}
+.search-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 77%;
+}
+.search-input
+  {
+    height: 60rpx;
+    background-color: #f5f5f5;
+    width: 70%;
+    border-radius: 25rpx;
+    margin-right: 15rpx;
+    padding: 5rpx 25rpx;
+    font-size: 13px;
+    color: #999;
+}
+.goods-area{
+    margin-top: 10rpx;
+    background-color: white;
+    display: flex;
+}
+.sort-list{
+    height: 1200rpx;
+    width: 28%;
+    overflow: auto;
+}
+.category-item {
+    position: relative; /* 相对定位，为了让伪元素相对于该元素定位 */
+    background-color: #F5F6F7;
+    text-align: center; /* 文本居中 */
+    font-size: 16px; /* 文本大小 */
+    padding: 35rpx 20rpx; /* 30rpx 顶部和底部的 padding，15rpx 左侧和右侧的 padding */
+    cursor: pointer; /* 鼠标指针样式为手型 */
+}
+.category-item:before {
+    content: ''; /* 伪元素内容为空 */
+    position: absolute; /* 绝对定位 */
+    top: 50%; /* 位于容器的中间位置 */
+    left: 0; /* 位于容器的左侧 */
+    transform: translateY(-50%); /* 将竖线向上偏移自身高度的一半，以使其居中 */
+    height: 70%; /* 竖线的高度为容器高度的70%，可以根据需要调整 */
+    width: 3px; /* 竖线的宽度 */
+    background-color: transparent; /* 初始状态为透明 */
+}
+.category-item.selected:before {
+    background-color: #234ad8; /* 左侧竖线颜色为蓝色 */
+}
+.category-item.selected {
+    background-color: #ffffff; /* 背景色为白色 */
+    font-weight: bold; /* 文本加粗 */
+    border-left-color: #234ad8; /* 左侧竖线颜色为蓝色 */
+}
+  
+  /* 添加被选中的上下两个 div 的圆角 */
+.category-item.selected + .category-item {
+    border-top-right-radius: 25rpx;
+}
+.category-item.has-border-bottom-right-radius {
+    border-bottom-right-radius: 25rpx; /* 根据需要设置右下圆角 */
+}
+.all-goods-list{
+    padding: 20rpx;
+    width: 72%;
+    overflow-y: scroll; /* 使用 scroll 实现垂直滚动 */
+}
+.category-name{
+	height: 70rpx;
+    font-size: 14px;
+    font-weight: bold;
+}
+.goods{
+    display: flex;
+	height: 200rpx;
+    margin-bottom: 30rpx;
+}
+.goods-content{
+    width: 70%;
+    margin-left: 20rpx;
+}
+.title{
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+.tag{
+    margin-top: 6rpx;
+    font-size: 11px;
+    color: #000;
+}
+.intro{
+    margin-top: 8rpx;
+    font-size: 11px;
+    color: #999;
+    overflow: hidden;
+}
+.price-button{
+    margin-top: 8rpx;
+    width: 100%;
+    display: flex;
+    align-items: flex-end; /* 垂直底部对齐 */
+}
+.price{
+    font-size: 16px;
+    color: #000;
+    display: flex;
+    align-items: flex-end; /* 垂直底部对齐 */
+    flex-grow: 1; /* 占据剩余空间 */
+}
+.add{
+    align-self: center;
+    font-size: 10px;
+    border-radius: 25rpx;
+    color: #fff;
+    background-color: #2249d5;
+    margin-left: auto;
+}
+.cart-area{
+    position: fixed;
+    bottom: 0;
+    left: 0; /* 或者使用 right: 0; 控制元素水平方向上的位置 */
+    width: -webkit-fill-available;
+    height: 100rpx;
+    background-color: #fff; /* 为了让元素更明显，可以添加背景色 */
+    padding: 10rpx 40rpx 10rpx 30rpx; /* 可选的内边距 */
+    border-top: 2px solid #f5f5f5; /* 左侧竖线，初始状态为透明 */
+    display: flex;
+    align-items: center;
+}
+.total-price{
+    margin-left: 30rpx;
+    font-size: 24px;
+    flex-grow: 1; /* 占据剩余空间 */
+}
+.checkout-button {
+    margin-left: auto;
+    background-color: #2249d5; /* 按钮背景颜色 */
+    color: #fff; /* 按钮文字颜色 */
+    border: none; /* 去除按钮边框 */
+    border-radius: 35rpx; /* 圆角边框 */
+    font-size: 16px; /* 按钮文字大小 */
+    height: 80rpx;
+    width: 220rpx;
+}

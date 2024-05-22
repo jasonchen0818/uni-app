@@ -56,9 +56,16 @@
 			}
 		},
 		{
+<<<<<<< HEAD
 			"path" : "pages/order/info",
 			"style": {
 				"navigationBarTitleText" : "订单详情"
+=======
+			"path" : "pages/productDetail/productDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "商品详情"
+>>>>>>> cc93fa6 (增加商品详情页)
 			}
 		},
 		{
