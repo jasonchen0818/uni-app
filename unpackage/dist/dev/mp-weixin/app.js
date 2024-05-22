@@ -12,6 +12,7 @@ if (!Math) {
   "./pages/order/order.js";
   "./pages/guest/info.js";
   "./pages/setting/setting.js";
+  "./pages/productDetail/productDetail.js";
   "./pages/order/info.js";
 }
 const _sfc_main = {
