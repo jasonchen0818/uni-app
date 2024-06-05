@@ -39,13 +39,42 @@
       </div>
     </scroll-view>
   </div>
-  <div class="cart-area">
-    <image src="../../static/image/cart-full (1).png" style="height: 80rpx;width: 80rpx;"></image>
-    <div class="total-price">
-      ¥ {{ totalPrice }}
+  <div class="cart-area" @click="toggleCartDetails">
+      <image src="../../static/image/cart-full (1).png" style="height: 80rpx;width: 80rpx;"></image>
+      <div class="total-price">
+        ¥ {{ totalPrice }}
+      </div>
+      <button class="checkout-button" @click="goToCheckout">去结算</button>
     </div>
-    <button class="checkout-button">去结算</button>
-  </div>
+  
+    <!-- Shopping Cart Details -->
+    <div v-if="showCartDetails" class="cart-details">
+      <div class="cart-header">
+        <span>购物车 (共{{ cart.length }}件商品)</span>
+        <text @click="clearCart">清空购物车</text>
+      </div>
+      <div class="cart-items">
+        <div v-for="item in cart" :key="item.id" class="cart-item">
+          <image :src="item.image" style="height: 150rpx; width: 150rpx;"></image>
+          <div class="item-details">
+            <div class="item-title">{{ item.title }}</div>
+            <div class="item-spec">规格: {{ item.spec }}</div>
+			<div class="price-sum">
+				<div class="item-price">¥ {{ item.price }} </div>
+				<div class="item-quantity">
+					<button class="decrement-button" @click="decreaseQuantity(item)">-</button>
+					<span>{{ item.quantity }}</span>
+				    <button class="increment-button" @click="increaseQuantity(item)">+</button>
+				</div>
+			</div>
+			  
+            
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  
 </template>
 
 <script>
@@ -56,24 +85,22 @@ export default {
       selectedCategory: null,
       goods: [],
       totalPrice: '0',
-      categoryHeights: [] ,// 用于存储每个分类的高度
-	  cart: []
+      categoryHeights: [], // 用于存储每个分类的高度
+      cart: [],
+      showCartDetails: false, // 控制购物车详情的显示和隐藏
     };
   },
   mounted() {
     // 在组件挂载后加载分类和商品数据
     this.loadCategories();
     this.loadGoods();
-	// 每次初始打开时清空购物车
-	this.clearCart();
-	
+    // 每次初始打开时清空购物车
+    this.clearCart();
   },
-  onLoad() {
-      
-	},
+  onLoad() {},
   onShow() {
     this.loadCart();
-	},
+  },
   methods: {
     loadCategories() {
       // 加载分类数据
@@ -105,33 +132,40 @@ export default {
         }
       });
     },
-	loadCart() {
-	      // 从本地存储中加载购物车数据
-	      this.cart = uni.getStorageSync('cart') || [];
-	      this.updateTotalPrice();
-	    },
-	    updateTotalPrice() {
-	      // 计算购物车中商品的总价
-	      this.totalPrice = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-	    },
-	    goToCheckout() {
-	      // 跳转到结算页（示例路径，请根据实际路径修改）
-	      uni.navigateTo({
-	        url: '/pages/checkout/checkout'
-	      });
-	},
-	clearCart() {
-	      // 清空本地存储中的购物车数据
-	      uni.removeStorageSync('cart');
-	      this.cart = [];
-	      this.totalPrice = 0;
-	},
-	goToCheckout() {
-	      // 跳转到结算页（示例路径，请根据实际路径修改）
-	      uni.navigateTo({
-	        url: '/pages/checkout/checkout'
-	      });
-	},
+    loadCart() {
+      // 从本地存储中加载购物车数据
+      this.cart = uni.getStorageSync('cart') || [];
+      this.updateTotalPrice();
+    },
+    updateTotalPrice() {
+      // 计算购物车中商品的总价
+      this.totalPrice = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+    },
+    goToCheckout() {
+      // 跳转到结算页（示例路径，请根据实际路径修改）
+      uni.navigateTo({
+        url: '/pages/goods/checkout/checkout'
+      });
+    },
+    clearCart() {
+      // 清空本地存储中的购物车数据
+      uni.removeStorageSync('cart');
+      this.cart = [];
+      this.totalPrice = '0';
+    },
+    toggleCartDetails() {
+      this.showCartDetails = !this.showCartDetails;
+    },
+    increaseQuantity(item) {
+      item.quantity++;
+      this.updateTotalPrice();
+    },
+    decreaseQuantity(item) {
+      if (item.quantity > 1) {
+        item.quantity--;
+        this.updateTotalPrice();
+      }
+    },
     renderCategoriesAndGoods() {
       // 清空之前的数据
       this.categories.forEach(category => category.goods = []);
@@ -149,15 +183,13 @@ export default {
         this.categoryHeights = [];
         let totalHeight = 0;
         this.categories.forEach(category => {
-		  this.categoryHeights.push(totalHeight);
+          this.categoryHeights.push(totalHeight);
           const goodsHeight = category.goods.length * 230; // 每个商品 200rpx + margin-bottom 30rpx
           const categoryNameHeight = 70; // category-name 高度为 70rpx
           totalHeight += categoryNameHeight + goodsHeight;
-          
         });
       });
     },
-
     selectCategory(category) {
       // 将所有 category 的 hasBorderBottomRightRadius 设置为 false
       this.categories.forEach(cat => cat.hasBorderBottomRightRadius = false);
@@ -174,18 +206,14 @@ export default {
     
       // 设置 scroll-view 组件的 scroll-into-view 属性，使其内容滚动到选中分类容器的可视区域顶部
       this.$refs.scrollView.scrollIntoView(selectedCategoryId);
-    
-      
     },
-	
-	viewProductDetail(productId) {
-	    // 导航到商品详情页路由，并将商品ID作为路由参数传递
-	   // 导航到商品详情页，并传递商品ID作为参数
-	    uni.navigateTo({
-	        url: '/pages/productDetail/productDetail?id=' + productId
-	    });
-	},
-
+    viewProductDetail(productId) {
+      // 导航到商品详情页路由，并将商品ID作为路由参数传递
+      // 导航到商品详情页，并传递商品ID作为参数
+      uni.navigateTo({
+        url: '/pages/goods/productDetail?id=' + productId
+      });
+    },
     addToCart(good) {
       // 处理点击添加到购物车的逻辑
       console.log('添加商品到购物车:', good);
@@ -358,4 +386,95 @@ export default {
     height: 80rpx;
     width: 220rpx;
   }
+  .cart-details {
+    position: fixed;
+    bottom: 120rpx;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+	font-size: 14px;
+    padding: 10rpx 20rpx;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart-items {
+    max-height: 400rpx;
+    overflow-y: auto;
+  }
+  
+  .cart-item {
+    display: flex;
+    padding: 10rpx 20rpx;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  
+  .item-details {
+    margin-left: 10rpx;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .item-title, .item-price{
+	  font-size: 14px;
+	  margin-bottom: 5rpx;
+  }
+   .item-spec {
+    font-size: 12px;
+	color: #999;
+	margin-bottom: 20rpx;
+  }
+  .price-sum {
+    display: flex;
+  }
+  .item-quantity {
+    display: flex;
+	margin-left: auto;
+    align-items: center;
+  }
+  
+  
+  .decrement-button,
+  .increment-button {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1;
+    border: 1px solid #999;
+    background-color: white;
+  }
+  
+  .decrement-button {
+    margin-right: 20rpx;
+  }
+  
+  .increment-button {
+    margin-left: 20rpx;
+    background-color: #2249d5;
+    color: #fff;
+    border: none;
+  }
+  
+  .cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10rpx 20rpx;
+    border-top: 1px solid #ddd;
+  }
+
+
+
 </style>

@@ -119,6 +119,7 @@
 					console.log(res);
 					this.infoFormData = res;
 					console.log(this.infoFormData);
+					uni.setStorageSync('userInfo', this.infoFormData);  // 缓存个人信息
 				})
 			}
 		},

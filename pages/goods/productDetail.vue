@@ -1,7 +1,7 @@
 <!-- ProductDetail.vue -->
 <template>
   <div class="ProductDetail">
-    <image :src="product.image" style="width: 100%;"></image>
+    <image :src="product.image" style="width: 100%; height: 500rpx;"></image>
 	<div class="container">
 		<text class="title">{{ product.title }}</text>
 		<div class="tag">
@@ -11,7 +11,7 @@
 			<text>{{ product.intro }}</text>
 		</div>
 		<div class="tips">
-		  <text>【饮茶小贴士】</text>
+		  <text>【护肤小贴士】</text>
 		  <div v-for="(tip, index) in product.tips" :key="index" class="tip-item">
 		        <text>* {{ tip }}</text>
 			</div>
@@ -31,7 +31,10 @@
 		  </div>
 		</div>
 	</div>
-    <image :src="product.poster" style="width:100%"></image>
+    <image :src="product.poster" style="width:100%" mode="widthFix"></image>
+	<div style="height: 200rpx;">
+		
+	</div>
   </div>
   
   <div class="cart">
@@ -79,6 +82,7 @@ export default {
     addToCart() {
         const cartItem = {
           productId: this.product.id,
+		  image: this.product.image,
           title: this.product.title,
           price: this.price,
           quantity: this.sum,
@@ -124,7 +128,7 @@ export default {
       url: `http://127.0.0.1:4523/m1/4177433-0-default/products/detail`,
       method: 'GET',
       data: {
-        id: productId
+        goodsId: productId
       },
       success: (res) => {
         if (res.statusCode === 200 && res.data) {
@@ -146,6 +150,7 @@ export default {
 /* 商品详情页样式 */
 .ProductDetail{
 	background-color: white;
+	overflow: auto;
 }
 .container{
 	padding: 40rpx;

@@ -56,7 +56,7 @@
 			}
 		},
 		{
-			"path": "pages/productDetail/productDetail",
+			"path": "pages/goods/productDetail",
 			"style": {
 				"navigationBarTitleText": "商品详情"
 			}
@@ -101,6 +101,13 @@
 			"path" : "pages/guest/tag",
 			"style": {
 				"navigationBarTitleText" : "标签"
+			}
+		},
+		{
+			"path" : "pages/goods/checkout/checkout",
+			"style" : 
+			{
+				"navigationBarTitleText" : "确认订单"
 			}
 		}
 	],
