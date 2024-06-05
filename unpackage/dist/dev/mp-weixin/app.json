@@ -13,6 +13,8 @@
     "pages/order/info",
     "pages/guest/add_guest",
     "pages/guest/followUp",
+    "pages/guest/followUpHistory",
+    "pages/guest/consumptionHistory",
     "pages/guest/edit",
     "pages/guest/tag",
     "pages/goods/checkout/checkout"

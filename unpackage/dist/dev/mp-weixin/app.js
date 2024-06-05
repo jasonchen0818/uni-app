@@ -16,6 +16,8 @@ if (!Math) {
   "./pages/order/info.js";
   "./pages/guest/add_guest.js";
   "./pages/guest/followUp.js";
+  "./pages/guest/followUpHistory.js";
+  "./pages/guest/consumptionHistory.js";
   "./pages/guest/edit.js";
   "./pages/guest/tag.js";
   "./pages/goods/checkout/checkout.js";
