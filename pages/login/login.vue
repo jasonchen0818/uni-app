@@ -65,6 +65,7 @@
 					url: this.$baseUrl + "/users/login",
 					method: "POST",
 					data: this.loginFormData,
+					header: {'Authorization': 'Bearer'},
 					success: (res) => {
 						// console.log(res);
 						if (res.data.code == 200) {
