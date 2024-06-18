@@ -105,8 +105,13 @@
 				uni.navigateTo({
 					url: '/pages/sign_up/sign_up'
 				});
-			}
-		}
+			},
+		},
+		onLoad() {
+			uni.switchTab({
+				url: '/pages/goods/goods'
+			});
+		}	
 	}
 </script>
 

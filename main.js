@@ -17,7 +17,8 @@ const app = new Vue({
 })
 
 //这个是项目的基础url,以后调接口就注释掉然后换上后端自己环境的URL
-app.config.globalProperties.$baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default";
+// app.config.globalProperties.$baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default";
+app.config.globalProperties.$baseUrl = "http://127.0.0.1:8080";
 app.config.globalProperties.$request = request
 
 app.$mount()
@@ -34,7 +35,8 @@ export function createApp() {
   const app = createSSRApp(App)
 	
 	//这个是项目的基础url,以后调接口就注释掉然后换上后端自己环境的URL
-	app.config.globalProperties.$baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default";
+	// app.config.globalProperties.$baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default";
+	app.config.globalProperties.$baseUrl = "http://127.0.0.1:8080";
 	app.config.globalProperties.$request = request
   return {
     app

@@ -29,9 +29,9 @@
 			<view v-for="(item,index) in list" :key="index" :id="`item-` + item.letter">
 				<view>
 					<!-- 判断该字母有没有孩子，没有就不显示了 -->
-					<text v-if="item.data.length" style="margin-left: 10px;">{{item.letter}}</text>
+					<text v-if="item.customers.length" style="margin-left: 10px;">{{item.letter}}</text>
 				</view>
-				<my-list-item v-for="(item2,index2) in item.data" :key="index2" :imgUrl="item2.imgUrl" :name="item2.name"
+				<my-list-item v-for="(item2,index2) in item.customers" :key="index2" :imgUrl="item2.imgUrl" :name="item2.name"
 					:phone="item2.phone" :sex="item2.sex" :age="item2.age" :state="item2.state"></my-list-item>
 			</view>
 		</scroll-view>
@@ -87,8 +87,8 @@
 		},
 		methods: {
 			getList() {
-				this.$request('/guest/getList', null, 'GET').then(res => {
-					// console.log("获取客户列表成功！", res);
+				this.$request('/customers/getList', null, 'GET').then(res => {
+					console.log("获取客户列表成功！", res);
 					this.list = res;
 					uni.setStorageSync('guestList', res);
 				})
