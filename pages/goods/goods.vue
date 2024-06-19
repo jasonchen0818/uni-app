@@ -12,13 +12,13 @@
   <div class="goods-area">
     <div class="sort-list">
       <div v-for="(category, index) in categories" :key="index" class="category-item" :class="{ 'selected': selectedCategory === category, 'has-border-bottom-right-radius': category.hasBorderBottomRightRadius }" @click="selectCategory(category, index)">
-        {{ category.name }}
+        {{ category.categoryName }}
       </div>
     </div>
     <scroll-view class="all-goods-list" scroll-y="true" ref="scrollView">
       <div v-for="(category, catIndex) in categories" :key="catIndex" class="category-container" :id="'category-' + catIndex">
         <!-- 分类名称 -->
-        <div class="category-name">{{ category.name }}</div>
+        <div class="category-name">{{ category.categoryName }}</div>
         <!-- 商品列表 -->
         <div class="goods-list">
           <div v-for="(good, index) in category.goods" :key="index" class="goods">
@@ -92,7 +92,7 @@ export default {
   },
   mounted() {
     // 在组件挂载后加载分类和商品数据
-    this.loadCategories();
+    this.loadCategories(); 
     this.loadGoods();
     // 每次初始打开时清空购物车
     this.clearCart();
@@ -104,16 +104,19 @@ export default {
   methods: {
     loadCategories() {
       // 加载分类数据
-      uni.request({
-        url: "http://127.0.0.1:4523/m2/4177433-0-default/171989370",
-        method: 'GET',
-        success: res => {
-          this.categories = res.data.categories;
-        },
-        fail: err => {
-          console.error('加载分类数据失败', err);
-        }
-      });
+	  this.$request('/goods/categories', null, 'GET').then(res => {
+		  this.categories = res;
+	  })
+      // uni.request({
+      //   url: "http://127.0.0.1:4523/m2/4177433-0-default/171989370",
+      //   method: 'GET',
+      //   success: res => {
+      //     this.categories = res.data.categories;
+      //   },
+      //   fail: err => {
+      //     console.error('加载分类数据失败', err);
+      //   }
+      // });
     },
     loadGoods() {
       // 加载商品数据
@@ -169,7 +172,7 @@ export default {
     renderCategoriesAndGoods() {
       // 清空之前的数据
       this.categories.forEach(category => category.goods = []);
-      
+	  
       // 将商品按照分类放入对应的分类中
       this.goods.forEach(good => {
         const category = this.categories.find(category => category.id === good.category_id);
