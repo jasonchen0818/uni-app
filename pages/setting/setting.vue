@@ -63,7 +63,7 @@
 		<div class="option-container">
 			<div class="option">
 				<uni-icons type="scan" size="20" color="#f3a73f"></uni-icons>
-				<text class="option-text">扫一扫（不一定做，先加着好看）</text>
+				<text class="option-text">扫一扫</text>
 			</div>
 			<uni-icons type="right" size="22" color="#969696"></uni-icons>
 		</div>

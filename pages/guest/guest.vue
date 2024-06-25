@@ -87,7 +87,7 @@
 		},
 		methods: {
 			getList() {
-				this.$request('/customers/getList', null, 'GET').then(res => {
+				this.$request('/guest/getList', null, 'GET').then(res => {
 					console.log("获取客户列表成功！", res);
 					this.list = res;
 					uni.setStorageSync('guestList', res);

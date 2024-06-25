@@ -108,9 +108,9 @@
 			},
 		},
 		onLoad() {
-			uni.switchTab({
-				url: '/pages/goods/goods'
-			});
+			// uni.switchTab({
+			// 	url: '/pages/goods/goods'
+			// });
 		}	
 	}
 </script>

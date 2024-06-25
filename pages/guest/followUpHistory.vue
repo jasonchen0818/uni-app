@@ -68,7 +68,7 @@
 				uni.removeStorageSync('guestName');
 				this.querry.name = this.data.name;
 				this.querry.phone = this.data.phone;
-				this.$request('/guest/followHistory', this.querry, 'POST').then(res => {
+				this.$request('/guest/followHistory', this.querry, 'GET').then(res => {
 					this.list = res;
 					console.log(this.list);
 				})

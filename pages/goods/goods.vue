@@ -14,14 +14,14 @@
 			<div v-for="(category, index) in categories" :key="index" class="category-item"
 				:class="{ 'selected': selectedCategory === category, 'has-border-bottom-right-radius': category.hasBorderBottomRightRadius }"
 				@click="selectCategory(category, index)">
-				{{ category.categoryName }}
+				{{ category.name }}
 			</div>
 		</div>
 		<scroll-view class="all-goods-list" scroll-y="true" ref="scrollView">
 			<div v-for="(category, catIndex) in categories" :key="catIndex" class="category-container"
 				:id="'category-' + catIndex">
 				<!-- 分类名称 -->
-				<div class="category-name">{{ category.categoryName }}</div>
+				<div class="category-name">{{ category.name }}</div>
 				<!-- 商品列表 -->
 				<div class="goods-list">
 					<div v-for="(good, index) in category.goods" :key="index" class="goods">
@@ -112,36 +112,14 @@
 				this.$request('/goods/categories', null, 'GET').then(res => {
 					this.categories = res;
 				})
-				// uni.request({
-				//   url: "http://127.0.0.1:4523/m2/4177433-0-default/171989370",
-				//   method: 'GET',
-				//   success: res => {
-				//     this.categories = res.data.categories;
-				//   },
-				//   fail: err => {
-				//     console.error('加载分类数据失败', err);
-				//   }
-				// });
 			},
 			loadGoods() {
 				// 加载商品数据
 				this.$request('/goods/list', null, 'GET').then(res => {
-					console.log(res)
-					this.goods = [];
-					res.forEach((good, index) => {
-						let tmp = {};
-						tmp.id = good.id;
-						tmp.title = good.productName;
-						tmp.tag = good.tag;
-						tmp.intro = good.description;
-						tmp.price = good.price;
-						tmp.image = good.image;
-						tmp.category_id = good.categoryId;
-						this.goods.push(tmp);
-					})
-					console.log(this.goods)
+					this.goods = res.goods;
 					this.$request('/goods/categories', null, 'GET').then(res => {
-						this.categories = res;
+						// console.log("测试", res)
+						this.categories = res.categories;
 						//     // 数据加载完成后渲染分类和商品列表
 						this.renderCategoriesAndGoods();
 						//     // 计算每个分类容器的高度
@@ -149,20 +127,6 @@
 					})
 				})
 
-				// uni.request({
-				//   url: "http://127.0.0.1:4523/m1/4177433-0-default/goods/list",
-				//   method: 'GET',
-				//   success: res => {
-				//     this.goods = res.data.goods;
-				//     // 数据加载完成后渲染分类和商品列表
-				//     this.renderCategoriesAndGoods();
-				//     // 计算每个分类容器的高度
-				//     this.calculateCategoryHeights();
-				//   },
-				//   fail: err => {
-				//     console.error('加载商品数据失败', err);
-				//   }
-				// });
 			},
 			loadCart() {
 				// 从本地存储中加载购物车数据

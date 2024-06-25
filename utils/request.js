@@ -1,5 +1,5 @@
-// const baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default"
-const baseUrl = "http://127.0.0.1:8080"
+const baseUrl = "http://127.0.0.1:4523/m1/4177433-0-default"
+// const baseUrl = "http://127.0.0.1:8080"
 
 //为了之后发送请求方便，不用每次传写header和解构，我又写了二次封装……
 //之后要和后端协商这个header写什么,目前就是传token

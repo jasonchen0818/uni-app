@@ -132,8 +132,9 @@ export default {
       }
       // 过滤客户列表
       const filteredGroups = [];
+	  console.log("测试", this.allCustomers)
       this.allCustomers.forEach(group => {
-        const filteredData = group.data.filter(customer =>
+        const filteredData = group.customers.filter(customer =>
           customer.name.includes(this.customerQuery) || customer.phone.includes(this.customerQuery)
         );
         if (filteredData.length > 0) {
@@ -190,7 +191,7 @@ export default {
       // 发送订单信息到后端
       this.$request('/orders/create', order, 'POST').then(res => {
         console.log('订单创建成功', res);
-        this.orderId = res.data.orderId; // 假设后端返回订单ID
+        this.orderId = res.orderId; // 假设后端返回订单ID
 		
 		this.showPaymentDialog = true; // 显示收款对话框
       }).catch(err => {
